@@ -1,0 +1,229 @@
+{
+	"id": "3a81b592-8639-aa75-d7cf-1a332a495a92",
+	"name": "ApiWebMotors",
+	"description": "",
+	"order": [
+		"12b0ed5b-634f-5f57-7aa9-90e605de1722",
+		"cf1bca03-ffc3-c105-7d62-7c2ee6a598c8",
+		"d7f15050-8730-30cf-7767-c915b5fc2345",
+		"1c62f1a3-8889-4ef9-95e4-25bb14c723e7",
+		"b5e60aa7-00d4-d56b-1a2e-a322bbfe616b",
+		"7f61bb5f-e1c0-18ec-72f9-3a76b1d2e969",
+		"903d161d-40aa-d70c-20e3-b5027723f9a4"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1585349606863,
+	"owner": "1101013",
+	"public": false,
+	"requests": [
+		{
+			"id": "12b0ed5b-634f-5f57-7aa9-90e605de1722",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://localhost:44397/api/anuncio/create",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585444203998,
+			"name": "PostAnuncio",
+			"description": "Post de Inclusão de anúncio;",
+			"collectionId": "3a81b592-8639-aa75-d7cf-1a332a495a92",
+			"responses": [],
+			"rawModeData": "  {  \n\"Marca\":\"Ford\",\n\"Modelo\":\"Ecosport\",\n\"Versao\":\"1.0\",\n\"Observacao\":\"Unico dono \",\n\"Ano\":\"2019\",\n\"Kilometragem\":\"0\"\n }"
+		},
+		{
+			"id": "1c62f1a3-8889-4ef9-95e4-25bb14c723e7",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://localhost:44397/api/anuncio/update",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585575887969,
+			"name": "PutAnuncio",
+			"description": "",
+			"collectionId": "3a81b592-8639-aa75-d7cf-1a332a495a92",
+			"responses": [],
+			"rawModeData": "  {  \n\"Id\":1,  \t\n\"Marca\":\"Ford\",\n\"Modelo\":\"Ecosport\",\n\"Versao\":\"1.0\",\n\"Observacao\":\"Unico dono \",\n\"Ano\":\"2019\",\n\"Kilometragem\":\"0\"\n }"
+		},
+		{
+			"id": "7f61bb5f-e1c0-18ec-72f9-3a76b1d2e969",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://localhost:44397/api/anuncio/update",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585444111148,
+			"name": "Put Anuncio com erro ",
+			"description": "Put Anuncio com erro de modelo não encontrado",
+			"collectionId": "3a81b592-8639-aa75-d7cf-1a332a495a92",
+			"responses": [],
+			"rawModeData": "  {  \n\"Id\" : 3,  \t\n\"Marca\":\"Ford\",\n\"Modelo\":\"Fiesta\",\n\"Versao\":\"4.0\",\n\"Observacao\":\"Unico dono \",\n\"Ano\":\"2020\",\n\"Kilometragem\":\"0\"\n }"
+		},
+		{
+			"id": "903d161d-40aa-d70c-20e3-b5027723f9a4",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://localhost:44397/api/anuncio/4",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585575149720,
+			"name": "Delete Anuncio",
+			"description": "",
+			"collectionId": "3a81b592-8639-aa75-d7cf-1a332a495a92",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "b5e60aa7-00d4-d56b-1a2e-a322bbfe616b",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://localhost:44397/api/anuncio/create",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585575175947,
+			"name": "Post de Anuncio com erro",
+			"description": "Post de Inclusão com versão não encontrada",
+			"collectionId": "3a81b592-8639-aa75-d7cf-1a332a495a92",
+			"responses": [],
+			"rawModeData": "  {  \n\"Marca\":\"Ford\",\n\"Modelo\":\"Ecosport\",\n\"Versao\":\"4.0 erro\",\n\"Observacao\":\"Unico dono \",\n\"Ano\":\"2020\",\n\"Kilometragem\":\"0\"\n }"
+		},
+		{
+			"id": "cf1bca03-ffc3-c105-7d62-7c2ee6a598c8",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://localhost:44397/api/anuncio",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3a81b592-8639-aa75-d7cf-1a332a495a92",
+			"data": [],
+			"dataMode": "raw",
+			"name": "GetAllAnuncio",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1585351298238,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "  {  \n\"Marca\":\"Ford\",\n\"Modelo\":\"Mustang\",\n\"Observacao\":\"Carrão da porra\",\n\"Versao\":\"GT\",\n\"Ano\":\"2020\",\n\"Kilometragem\":\"0\"\n }"
+		},
+		{
+			"id": "d7f15050-8730-30cf-7767-c915b5fc2345",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://localhost:44397/api/anuncio/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3a81b592-8639-aa75-d7cf-1a332a495a92",
+			"data": [],
+			"dataMode": "raw",
+			"name": "GetAnuncio por Id",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1585351355217,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "  {  \n\"Marca\":\"Ford\",\n\"Modelo\":\"Mustang\",\n\"Observacao\":\"Carrão da porra\",\n\"Versao\":\"GT\",\n\"Ano\":\"2020\",\n\"Kilometragem\":\"0\"\n }"
+		}
+	]
+}

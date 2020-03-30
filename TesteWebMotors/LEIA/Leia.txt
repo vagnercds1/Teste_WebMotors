@@ -1,0 +1,9 @@
+
+1 - Para executar o projeto, altere os dados de conexão com o banco de dados "appsettings.json"
+
+2 - Ao executar o projeto, o banco de dados será criado com database first
+
+3 - Importe a collection de requisições a API no Postman
+arquivo:  ApiWebMotors.postman_collection.json
+
+* Existem chamadas simulando erros para visualização
