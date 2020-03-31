@@ -5,5 +5,3 @@
 
 3 - Importe a collection de requisições a API no Postman
 arquivo:  ApiWebMotors.postman_collection.json
-
-* Existem chamadas simulando erros para visualização

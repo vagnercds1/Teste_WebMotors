@@ -1,12 +1,15 @@
 ﻿
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TesteWebMotors.Models;
+using WebMotors.Domain.Business.Interfaces;
+using WebMotors.Domain.Data.DTO;
+using WebMotors.Repository.Interfaces;
 
 namespace TesteWebMotors.Controllers
 {
@@ -14,125 +17,104 @@ namespace TesteWebMotors.Controllers
     [ApiController]
     public class AnuncioController : ControllerBase
     {
-        private readonly TesteContext _context;
 
-        public AnuncioController(TesteContext context)
+        private IAnuncioBusiness _business;
+
+        public AnuncioController(IAnuncioBusiness business, IMapper mapper)
         {
-            _context = context;
+            _business = business;
         }
 
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Anuncio>>> Get()
+        public IActionResult Get()
         {
-            return await _context.Anuncios.ToListAsync();
+            try
+            {
+                return new OkObjectResult(_business.FindAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Anuncio>> Get(int id)
+        public IActionResult Get(int id)
         {
-            return await _context.Anuncios.FindAsync(id);
+            try
+            {
+                var anuncio = _business.FindById(id);
+                if (anuncio == null) return NotFound();
+                return new OkObjectResult(anuncio);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            } 
         }
 
         // POST api/values 
         [HttpPost()]
         [Route("create")]
-        public async Task<ActionResult<Anuncio>> Post([FromBody]Anuncio anuncio)
+        public IActionResult Post([FromBody]AnuncioDTO anuncio)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
-             
-            var listMarcas = ApiVeiculos.GetMarcas(); 
-            if (!listMarcas.Where(x => x.Name.Contains(anuncio.Marca)).Any())
-                return NotFound("Marca não encontrada");
-             
 
-            var listModelos = ApiVeiculos.GetModelos(listMarcas.Where(x => x.Name.Contains(anuncio.Marca)).First().ID);
-            if (!listModelos.Where(x => x.Name.Contains(anuncio.Modelo)).Any())
-                return NotFound("Modelo não encontrado");
-            else  
-                anuncio.Modelo = listModelos.Where(x => x.Name.Contains(anuncio.Modelo)).First().Name;
-             
-
-            var listVersoes = ApiVeiculos.GetVersoes(listModelos[0].ID);
-            if (!listVersoes.Where(x => x.Name.Contains(anuncio.Versao)).Any())
-                return NotFound("Versão não encontrada");
-            else
-                anuncio.Versao = listVersoes.Where(x => x.Name.Contains(anuncio.Versao)).First().Name;
-
-            _context.Anuncios.Add(anuncio);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("Get", new { id = anuncio.ID }, anuncio);
+            try
+            {
+                if (anuncio == null) return BadRequest();
+                return new OkObjectResult(_business.Create(anuncio));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            } 
         }
 
 
         // PUT api/values/5 
         [Route("update")]
         [HttpPut()]
-        public async Task<ActionResult<Anuncio>> Put(Anuncio anuncio)
+        public IActionResult Put([FromBody] AnuncioDTO anuncio)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
 
-            var retorno = _context.Anuncios.Find(anuncio.ID);
-
-            if (retorno == null)
-                return NotFound();
-            else
+            try
             {
-                var listMarcas = ApiVeiculos.GetMarcas();
-                if (retorno.Marca != anuncio.Marca)
-                { 
-                    if (!listMarcas.Where(x => x.Name.Contains(anuncio.Marca)).Any())
-                        return NotFound("Marca não encontrada");
-                    else
-                        retorno.Marca = listMarcas[0].Name;
-                }
-
-                var listModelos = new List<Modelo>();
-                if (retorno.Modelo != anuncio.Modelo)
-                {
-                    listModelos = ApiVeiculos.GetModelos(listMarcas.Where(a=>a.Name == anuncio.Marca).First().ID);
-                    if (!listModelos.Where(x => x.Name.Contains(anuncio.Modelo)).Any())
-                        return NotFound("Modelo não encontrado");
-                    else
-                        retorno.Modelo = listModelos[0].Name;
-                }
-                 
-                if (retorno.Versao != anuncio.Versao)
-                {
-                    var listVersoes = ApiVeiculos.GetVersoes(listModelos.Where(a=>a.Name == anuncio.Modelo).First().ID);
-                    if (!listVersoes.Where(x => x.Name.Contains(anuncio.Versao)).Any())
-                        return NotFound("Versão não encontrada");
-                    else
-                        retorno.Versao = listVersoes[0].Name;
-                }
-                 
-                retorno.Observacao = anuncio.Observacao; 
-                retorno.Ano = anuncio.Ano;
-                retorno.Kilometragem = anuncio.Kilometragem; 
-                _context.Entry(retorno).State = EntityState.Modified;
-
-                await _context.SaveChangesAsync();
+                if (anuncio == null) return BadRequest();
+                var updatedanuncio = _business.Update(anuncio);
+                if (updatedanuncio == null) return BadRequest();
+                return new OkObjectResult(updatedanuncio);
             }
-
-            return CreatedAtAction("Get", new { id = anuncio.ID }, anuncio);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
 
 
         // DELETE api/values/5 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var retono = _context.Anuncios.Find(id);
+            var retono = _business.FindById(id);
 
-            if (retono != null)
+            if (retono == null)
+                return NotFound();
+
+            try
             {
-                _context.Anuncios.Remove(retono);
-                _context.SaveChanges();
+                _business.Delete(id);
+                return NoContent();
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            } 
         }
     }
 }
